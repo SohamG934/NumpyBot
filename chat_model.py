@@ -214,18 +214,3 @@ repo_id = "google/flan-t5-xxl"
 # Repo from HuggingFaceHub
 flan_t5 = HuggingFaceHub(repo_id=repo_id,
                          model_kwargs={"temperature":0.1, "max_new_tokens":200})
-
-
-# Create the LLM Chain
-from langchain.chains import RetrievalQA
-
-flan_t5_qa = RetrievalQA.from_chain_type(llm = flan_t5, chain_type = "stuff",
-                                         retriever = docsearch.as_retriever(),
-                                         return_source_documents = True)
-
-
-query = "what does numpy provide support for?"
-response = flan_t5_qa(query)
-
-
-response["result"]

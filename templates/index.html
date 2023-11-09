@@ -1,0 +1,346 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT-like Chat UI</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .chat-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .chat-body {
+            padding: 15px;
+            overflow-y: scroll;
+            max-height: 300px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+        }
+
+        .user-message {
+            background-color: #4CAF50;
+            color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            max-width: 70%;
+            align-self: flex-end;
+        }
+
+        .bot-message {
+            background-color: #2196F3;
+            color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            max-width: 70%;
+            align-self: flex-start;
+        }
+
+        .message-input {
+            width: calc(100% - 30px);
+            padding: 10px;
+            border: none;
+            border-top: 1px solid #ddd;
+            border-radius: 0 0 8px 8px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .send-button {
+            width: 30px;
+            height: 30px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="chat-header">NumPyGuru</div>
+    <div class="chat-body" id="chatBody">
+        <div class="message bot-message">Hello! I am NumpyGuru, your own numpy assistant bot. Ask me anything related to numpy!</div>
+        <!-- Other messages go here -->
+    <!-- </div>
+    <input type="text" class="message-input" id="userInput" placeholder="Type your message...">
+    <button class="send-button" onclick="sendMessage()">➤</button>
+</div>
+
+<script>
+    function sendMessage() {
+        var userInput = document.getElementById("userInput").value;
+        var chatBody = document.getElementById("chatBody");
+        
+        // User message
+        var userMessage = document.createElement("div");
+        userMessage.className = "message user-message";
+        userMessage.textContent = userInput;
+        chatBody.appendChild(userMessage);
+
+        // Bot message (for demonstration purposes, you can replace this with actual AI response)
+        var botMessage = document.createElement("div");
+        botMessage.className = "message bot-message";
+        botMessage.textContent = "I received: " + userInput;
+        chatBody.appendChild(botMessage);
+
+        // Clear the input field
+        document.getElementById("userInput").value = "";
+        
+        // Scroll to the bottom of the chat body
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+</script>
+
+</body>
+</html> --> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT-like Chat UI</title>
+    <style>
+        /* Your CSS styles go here */
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="chat-header">ChatGPT Chat</div>
+    <div class="chat-body" id="chatBody">
+        Previous messages go here -->
+    <!-- </div>
+    <form id="chatForm">
+        <input type="text" class="message-input" id="userInput" name="userInput" placeholder="Type your message...">
+        <button type="button" class="send-button" onclick="sendMessage()">➤</button>
+    </form>
+</div>
+
+<script>
+    function sendMessage() {
+        var userInput = document.getElementById("userInput").value;
+        var chatBody = document.getElementById("chatBody");
+
+        // User message
+        var userMessage = document.createElement("div");
+        userMessage.className = "message user-message";
+        userMessage.textContent = userInput;
+        chatBody.appendChild(userMessage);
+
+        // Send user message to Flask server and get response
+        fetch('/send_message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                'userInput': userInput,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Bot message
+            var botMessage = document.createElement("div");
+            botMessage.className = "message bot-message";
+            botMessage.textContent = data.bot_response;
+            chatBody.appendChild(botMessage);
+
+            // Clear the input field
+            document.getElementById("userInput").value = "";
+
+            // Scroll to the bottom of the chat body
+            chatBody.scrollTop = chatBody.scrollHeight;
+        })
+        .catch(error => {
+            console.error("Error sending message to server:", error);
+        });
+    }
+</script>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NumpyBot</title>
+    <!-- <link rel="stylesheet" type="css" href="style.css"> -->
+
+    <style>
+        /* Your CSS styles go here */
+        body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+.chat-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #282c34;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.chat-header {
+    background-color: #1e1e1e;
+    color: #61dafb;
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.chat-body {
+    padding: 15px;
+    overflow-y: scroll;
+    max-height: 300px;
+}
+
+.message {
+    margin-bottom: 15px;
+}
+
+.user-message {
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 70%;
+    align-self: flex-end;
+}
+
+.bot-message {
+    background-color: #2196F3;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 70%;
+    align-self: flex-start;
+}
+
+.message-input {
+    width: calc(100% - 30px);
+    padding: 10px;
+    border: none;
+    border-top: 1px solid #ddd;
+    border-radius: 0 0 8px 8px;
+    outline: none;
+    font-size: 16px;
+    background-color: #333;
+    color: #fff;
+}
+
+.send-button {
+    width: 30px;
+    height: 30px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#botResponse {
+    background-color: #2196F3;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 15px;
+}
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="chat-header">Learn Numpy!</div>
+    <div class="chat-body" id="chatBody">
+        <!-- Previous messages go here -->
+    </div>
+    <form id="chatForm">
+        <input type="text" class="message-input" id="userInput" name="userInput" placeholder="Ask your numpy question">
+        <button type="button" class="send-button" onclick="sendMessage()">➤</button>
+    </form>
+    <div id="botResponse" class="message bot-message"></div>
+</div>
+
+<script>
+    function sendMessage() {
+        var userInput = document.getElementById("userInput").value;
+        var chatBody = document.getElementById("chatBody");
+        var botResponseDiv = document.getElementById("botResponse");
+
+        // User message
+        var userMessage = document.createElement("div");
+        userMessage.className = "message user-message";
+        userMessage.textContent = userInput;
+        chatBody.appendChild(userMessage);
+
+        // Send user message to Flask server and get response
+        fetch('/send_message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                'userInput': userInput,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Bot message
+            var botMessage = document.createElement("div");
+            botMessage.className = "message bot-message";
+            botMessage.textContent = data.bot_response;
+            chatBody.appendChild(botMessage);
+
+            // Display bot response in the dedicated div
+            botResponseDiv.textContent = data.bot_response;
+
+            // Clear the input field
+            document.getElementById("userInput").value = "";
+
+            // Scroll to the bottom of the chat body
+            chatBody.scrollTop = chatBody.scrollHeight;
+        })
+        .catch(error => {
+            console.error("Error sending message to server:", error);
+        });
+    }
+</script>
+
+</body>
+</html>
